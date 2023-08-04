@@ -6,6 +6,7 @@ import Galeria from './pages/galeria';
 import NotFound from './pages/notFound';
 import Texto from './pages/texto';
 import MenuFilho from './component/menuFilho';
+import EstadoContador from './pages/contador';
 //import Menu from './component/menu';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/galeria' element={<Galeria />} />
           <Route path='/texto' element={<Texto />} />
+          <Route path='/contador' element={<EstadoContador />} />
           <Route path='/*' element={<NotFound />} />
         </Routes>
       </BrowserRouter>

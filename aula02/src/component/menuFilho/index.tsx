@@ -7,7 +7,8 @@ export default function MenuFilho() {
         <div>
             <MenuPai to='/'>Início da página </MenuPai>
             <MenuPai to='/galeria'>| Sobre Galeria </MenuPai>
-            <MenuPai to='/'>| Posts </MenuPai>
+            <MenuPai to='/texto'>| Posts </MenuPai>
+            <MenuPai to='contador'>| Contador </MenuPai>
         </div>
         </>
 
