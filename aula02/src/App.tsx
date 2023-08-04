@@ -5,6 +5,8 @@ import Home from './pages/home';
 import Galeria from './pages/galeria';
 import NotFound from './pages/notFound';
 import Texto from './pages/texto';
+import MenuFilho from './component/menuFilho';
+//import Menu from './component/menu';
 
 function App() {
   return (
@@ -12,6 +14,7 @@ function App() {
     <h1>Aula II - Router + Props + States</h1>
     <hr/>
       <BrowserRouter>
+      <MenuFilho />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/galeria' element={<Galeria />} />
