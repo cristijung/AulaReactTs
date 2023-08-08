@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 interface FormData {
   name: string;
   email: string;
+  idade: number;
   password: string;
 }
 
@@ -25,6 +26,11 @@ function Formulario() {
           {errors.name && <p>Name is required</p>}
         </div>
         <div>
+        <div>
+          <label>Idade</label>
+          <input {...register('idade', { required: true })} />
+          {errors.idade && <p>Idade is required</p>}
+        </div>
           <label>Email</label>
           <input {...register('email', { required: true, pattern: /^\S+@\S+$/i })} />
           {errors.email && <p>Valid email is required</p>}
