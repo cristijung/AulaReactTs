@@ -1,24 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchAddress } from './features/addressSlice';
+import { RootState } from './store/store';
+import { ThunkDispatch } from 'redux-thunk';
 
 function App() {
+  const dispatch: ThunkDispatch<RootState, any, any> = useDispatch();
+  const { street, neighborhood, city, status, error } = useSelector(
+    (state: RootState) => state.address
+  );
+
+  const [cep, setCep] = useState('');
+  
+  const handleCepChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCep(e.target.value);
+  };
+
+  const handleSearch = () => {
+    if (cep.trim() !== '') {
+      dispatch(fetchAddress(cep));
+    }
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Consulta de CEP</h1>
+      <input
+        type="text"
+        placeholder="Digite um CEP"
+        value={cep}
+        onChange={handleCepChange}
+      />
+      <button onClick={handleSearch}>Buscar</button>
+      {status === 'loading' ? (
+        <p>Carregando...</p>
+      ) : status === 'failed' ? (
+        <p>{error}</p>
+      ) : (
+        <>
+          <p>Rua: {street}</p>
+          <p>Bairro: {neighborhood}</p>
+          <p>Cidade: {city}</p>
+        </>
+      )}
     </div>
   );
 }
